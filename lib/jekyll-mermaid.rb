@@ -8,14 +8,8 @@ module Jekyll
     def render(context)
       @config = context.registers[:site].config['mermaid']
 
-      out = <<-HELLO
-        <script type="module">
-          import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-        </script>
-        <div class=\"mermaid\">#{super}</div>
-      HELLO
-      
-      out
+      "<script type=module>import mermaid from '#{@config['src']}';</script>"\
+      "<div class=\"mermaid\">#{super}</div>"
     end
   end
 end
